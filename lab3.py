@@ -18,9 +18,9 @@ from functools import wraps
 
 st.title("ZENATI Mohamed TP 2")
 
-df1 = pd.read_csv(("C:/Users/zmoha/OneDrive/Bureau/Data VIZ/LAB2/st_app/uber-raw-data-apr14.csv"))
+df1 = pd.read_csv(("uber-raw-data-apr14.csv"))
 df1['Date/Time']=pd.to_datetime(df1["Date/Time"])
-df2=pd.read_csv("C:/Users/zmoha/OneDrive/Bureau/Data VIZ/LAB2/st_app/ny-trips-data.csv")
+df2=pd.read_csv("ny-trips-data.csv")
 
 def log_time(func):
     """
@@ -31,7 +31,7 @@ def log_time(func):
         func(*args, **kwargs)
         end_time = time.time()
         variable = "Durée d'exécution : {:1.3}s".format(end_time - start_time)
-        file = open("C:/Users/zmoha/OneDrive/Bureau/Data VIZ/LAB2/st_app/tp3/monfichiertext.txt", "w") 
+        file = open("monfichiertext.txt", "w") 
         file.write(variable) 
         file.close()
         
@@ -90,7 +90,7 @@ def csv(app_mode):
     if app_mode== "uber-raw-data-apr14":
         st.sidebar.success('')
         run_the_app()
-        df = pd.read_csv(("C:/Users/zmoha/OneDrive/Bureau/Data VIZ/LAB2/st_app/uber-raw-data-apr14.csv"))
+        df = pd.read_csv(("uber-raw-data-apr14.csv"))
         df['Date/Time']=pd.to_datetime(df["Date/Time"])
         df['day'] = df['Date/Time'].map(get_dom)
         df['weekday']= df['Date/Time'].map(get_weekday)
@@ -107,7 +107,7 @@ def csv(app_mode):
         run_the_app()
         st.title("Vous voila dans le DataSet suivant : ny-trips-data")
         
-        df = pd.read_csv(("C:/Users/zmoha/OneDrive/Bureau/Data VIZ/LAB2/st_app/ny-trips-data.csv"))
+        df = pd.read_csv(("ny-trips-data.csv"))
         df['tpep_pickup_datetime']=pd.to_datetime(df["tpep_pickup_datetime"])
         df['tpep_dropoff_datetime']=pd.to_datetime(df["tpep_dropoff_datetime"])
         df['hour_pickup'] = df['tpep_pickup_datetime'].map(get_hour)
